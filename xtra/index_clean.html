@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Summarizer Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1 class="app-title">Website Summarizer Pro</h1>
+            <p class="app-subtitle">Transform any website into a concise, readable summary</p>
+        </header>
+
+        <div class="card" id="form-container">
+            <div class="disclaimer">
+                <strong>📝 Note:</strong> This tool scrapes websites for summarization purposes. Please ensure
+                compliance with the target website's terms of service.
+            </div>
+
+            <form id="summarizer-form">
+                <div class="checkbox-group form-group">
+                    <input type="checkbox" id="accept" required>
+                    <label for="accept">I accept the terms and conditions</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="input_type">How would you like to input content?</label>
+                    <div class="input-group">
+                        <select id="input_type" onchange="toggleInputFields()">
+                            <option value="url">Website URL</option>
+                            <option value="manual">Manual HTML/Text</option>
+                        </select>
+                        <i class="fas fa-globe input-icon"></i>
+                    </div>
+                </div>
+
+                <div class="form-group" id="url_input">
+                    <label for="url">Enter Website URL</label>
+                    <div class="input-group">
+                        <input type="text" id="url" placeholder="https://example.com">
+                        <i class="fas fa-link input-icon"></i>
+                    </div>
+                </div>
+
+                <div class="form-group" id="manual_input" style="display: none;">
+                    <label for="manual">Paste your content</label>
+                    <textarea id="manual" rows="8" placeholder="Paste your HTML or text content here..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Choose Summary Format</label>
+                    <div class="format-select">
+                        <div class="format-option selected" data-format="paragraph">
+                            <i class="fas fa-paragraph"></i>
+                            <div>Paragraph</div>
+                        </div>
+                        <div class="format-option" data-format="bullet_points">
+                            <i class="fas fa-list"></i>
+                            <div>Bullet Points</div>
+                        </div>
+                        <div class="format-option" data-format="emoji">
+                            <i class="fas fa-smile"></i>
+                            <div>Emoji Style</div>
+                        </div>
+                        <div class="format-option" data-format="table">
+                            <i class="fas fa-table"></i>
+                            <div>Table</div>
+                        </div>
+                        <div class="format-option" data-format="detailed">
+                            <i class="fas fa-book"></i>
+                            <div>Detailed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="button">
+                    <i class="fas fa-magic"></i> Generate Summary
+                </button>
+            </form>
+
+            <div id="error-message" class="error"></div>
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="loading-spinner"></div>
+            <p>Generating your summary...</p>
+        </div>
+
+        <div id="result-container" class="result-container">
+            <div class="card">
+                <h2>Your Summary</h2>
+                <div id="summary" class="summary"></div>
+                <button onclick="resetForm()" class="button">
+                    <i class="fas fa-redo"></i> Create New Summary
+                </button>
+            </div>
+            <div class="export-options">
+                <button class="export-btn" data-format="pdf"><i class="fas fa-file-pdf"></i></button>
+                <button class="export-btn" data-format="doc"><i class="fas fa-file-word"></i></button>
+                <button class="export-btn" data-format="text"><i class="fas fa-file-alt"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </div>
+    <div class="holographic-cards">
+        <div class="hologram-card" data-format="bullet_points">
+          <div class="hologram-effect"></div>
+          <i class="fas fa-rocket"></i>
+          <h3>Turbo Summary</h3>
+          <p>AI-powered quick insights</p>
+        </div>
+        <!-- Add 4 more cards with unique icons/effects -->
+      </div>
+    <div class="toast" id="toast"></div>
+
+   <script src="scripts.js"></script> 
+</body>
+
+</html>
